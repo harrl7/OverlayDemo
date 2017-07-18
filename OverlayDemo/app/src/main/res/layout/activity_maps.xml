@@ -6,7 +6,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bit.harrl7.overlaydemo.MainActivity">
+    tools:context="bit.harrl7.overlaydemo.MapsActivity">
 
 
         <LinearLayout
@@ -19,12 +19,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                        <Button android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Show"
-                        android:id="@+id/btnShow"
-                            android:layout_weight="1">
-                        </Button>
+                    <Button android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Clear"
+                        android:id="@+id/btnClear"
+                        android:layout_weight="1" />
+
+
+                    <Button
+                        android:text="Track1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/btnTrack1"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Track2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/btnTrack2"
+                        android:layout_weight="1" />
+
                 </LinearLayout>
 
                 <fragment

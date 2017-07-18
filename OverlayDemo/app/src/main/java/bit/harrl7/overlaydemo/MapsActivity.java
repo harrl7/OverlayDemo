@@ -43,21 +43,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         overlayIndex = 0;
 
 
-        btnShow = (Button) findViewById(R.id.btnShow);
-        btnShow.setOnClickListener(new BtnShowPathHandler());
+        // Clear Tracks
+        Button btnShow = (Button) findViewById(R.id.btnClear);
+        btnShow.setOnClickListener(new BtnClearPathsHandler());
+
+        // Easy Track
+        Button btnEasy = (Button) findViewById(R.id.btnTrack1);
+        btnEasy.setOnClickListener(new BtnShowEasyTrackHandler());
+
+        // Hard Track
+        Button btnHard = (Button) findViewById(R.id.btnTrack2);
+        btnHard.setOnClickListener(new BtnShowHardTrackHandler());
 
     }
 
-    public class BtnShowPathHandler implements View.OnClickListener
+    public class BtnClearPathsHandler implements View.OnClickListener
     {
-
         @Override
-        public void onClick(View v)
-        {
-            //setOverlay();
-            kmlParser.RenderKmlPaths();
-        }
+        public void onClick(View v) { kmlParser.RenderKmlPaths(0);}
     }
+
+    public class BtnShowEasyTrackHandler implements View.OnClickListener
+    {
+        @Override
+        public void onClick(View v) { kmlParser.RenderKmlPaths(R.raw.easy_path);}
+    }
+
+
+    public class BtnShowHardTrackHandler implements View.OnClickListener
+    {
+        @Override
+        public void onClick(View v) { kmlParser.RenderKmlPaths(R.raw.hard_path);}
+    }
+
 
     /**
      * Manipulates the map once available.

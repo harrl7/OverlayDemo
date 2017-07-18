@@ -21,21 +21,28 @@ public class KmlParser {
     protected Context context;
     private GoogleMap gMap;
 
+    private KmlLayer kmlLayer;
+
     public KmlParser(GoogleMap gMap, Context context)
     {
         this.gMap = gMap;
         this.context = context;
     }
 
-    public void RenderKmlPaths()
+    public void RenderKmlPaths(int pathID)
     {
-        retrieveFileFromResources();
+        // Clear track
+        if(kmlLayer != null) kmlLayer.removeLayerFromMap();
+
+        // Draw new
+        if(pathID != 0) retrieveFileFromResources(pathID);
     }
 
-    private void retrieveFileFromResources(){
+    private void retrieveFileFromResources(int pathID){
         try{
-            KmlLayer kmlLayer = new KmlLayer(gMap, R.raw.new_path, context); //R.raw.filename = the kml data file.
+            kmlLayer = new KmlLayer(gMap, pathID, context); //R.raw.filename = the kml data file.
             kmlLayer.addLayerToMap(); //Adds the layer to the map
+
         }
         catch (IOException e){
             Log.e("IO KML exception::  ", e.getMessage());
