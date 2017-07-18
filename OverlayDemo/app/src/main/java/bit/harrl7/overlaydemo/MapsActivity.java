@@ -26,6 +26,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private Button btnShow;
 
+    private KmlParser kmlParser;
+
     private int overlayIndex;
 
     @Override
@@ -40,6 +42,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         overlayIndex = 0;
 
+
         btnShow = (Button) findViewById(R.id.btnShow);
         btnShow.setOnClickListener(new BtnShowPathHandler());
 
@@ -51,7 +54,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public void onClick(View v)
         {
-            setOverlay();
+            //setOverlay();
+            kmlParser.RenderKmlPaths();
         }
     }
 
@@ -70,10 +74,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng gardens = new LatLng(-45.865092, 170.511513);
+        LatLng gardens = new LatLng(-45.856632, 170.5177848);
         mMap.addMarker(new MarkerOptions().position(gardens).title("Marker in Sydney"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(gardens));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gardens, 15));
+
+        kmlParser = new KmlParser(mMap, this);
     }
 
     public void setOverlay()
